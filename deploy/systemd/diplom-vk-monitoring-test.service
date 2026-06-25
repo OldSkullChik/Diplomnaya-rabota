@@ -1,0 +1,15 @@
+[Unit]
+Description=Diplom VK monitoring test collector
+After=network-online.target postgresql.service
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=oldskull
+Group=oldskull
+WorkingDirectory=/home/oldskull/apps/Diplomnaya-rabota
+Environment=DJANGO_ENV_FILE=/home/oldskull/apps/Diplomnaya-rabota/.env.monitoring-test
+ExecStart=/home/oldskull/apps/Diplomnaya-rabota/.venv/bin/python manage.py collect_vk_monitoring_test --lookback-minutes 120 --max-sources 10 --max-posts-per-source 15 --max-comments-per-post 20 --analysis-batch-size 8 --update-dashboard --json-output runtime/vk_monitoring_timer_latest.json
+Nice=10
+IOSchedulingClass=best-effort
+IOSchedulingPriority=7

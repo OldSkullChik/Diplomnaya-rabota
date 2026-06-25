@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}Пользователи{% endblock %}
+{% block content %}
+<div class="page-head">
+    <div>
+        <h1>Пользователи разметчика</h1>
+        <p class="lede compact">Здесь администратор разметки утверждает новых студентов и видит, кому уже открыт доступ.</p>
+    </div>
+    <div class="meta-row">
+        <span class="pill">ожидают: {{ pending_count }}</span>
+        <span class="pill">всего: {{ profiles|length }}</span>
+    </div>
+</div>
+
+<section class="surface">
+    {% if profiles %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Логин</th>
+                        <th>Имя</th>
+                        <th>Email</th>
+                        <th>Роль</th>
+                        <th>Статус</th>
+                        <th>Кем утвержден</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for profile in profiles %}
+                        <tr>
+                            <td>{{ profile.user.username }}</td>
+                            <td>{{ profile.public_name|default:profile.user.get_full_name|default:"-" }}</td>
+                            <td>{{ profile.user.email|default:"-" }}</td>
+                            <td>{{ profile.get_role_display }}</td>
+                            <td>
+                                {% if profile.is_approved %}
+                                    <span class="pill">доступ открыт</span>
+                                {% else %}
+                                    <span class="pill">ожидает</span>
+                                {% endif %}
+                            </td>
+                            <td>{% if profile.approved_by %}{{ profile.approved_by.username }}{% else %}-{% endif %}</td>
+                            <td>
+                                {% if not profile.is_approved %}
+                                    <form method="post" action="{% url 'approve_participant' profile.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit">Утвердить</button>
+                                    </form>
+                                {% else %}
+                                    <span class="muted">готово</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="compact">Пользователи пока не зарегистрированы.</p>
+    {% endif %}
+</section>
+{% endblock %}

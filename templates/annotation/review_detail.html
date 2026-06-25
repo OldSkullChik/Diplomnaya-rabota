@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}Проверка ответа{% endblock %}
+{% block content %}
+<div class="page-head">
+    <div>
+        <h1>Проверка ответа</h1>
+        <p class="lede compact">Проверьте тему записи по посту, затем метки реакции в комментарии. Комментарий не переопределяет предмет поста. После сохранения ответ уйдет из очереди проверки.</p>
+    </div>
+</div>
+
+<div class="workbench">
+    <section class="surface">
+        <div class="meta-row">
+            <span class="pill">студент: {{ annotation.student.username }}</span>
+            <span class="pill">запись: {{ annotation.record.id }}</span>
+            {% if annotation.record.source_url %}
+                <a class="pill source-link" href="{{ annotation.record.source_url }}" target="_blank" rel="noopener">Открыть источник</a>
+            {% endif %}
+        </div>
+
+        {% if annotation.record.post_text %}
+            <div class="record-block">
+                <h2>Контекст поста</h2>
+                <div class="record-text">{{ annotation.record.post_text }}</div>
+            </div>
+        {% endif %}
+
+        <div class="record-block">
+            <h2>Текст записи</h2>
+            <div class="record-text comment-text">{{ annotation.record.text }}</div>
+        </div>
+    </section>
+
+    <aside class="surface sticky-side">
+        <h2>Ответ студента</h2>
+        {% if annotation.is_deleted_post_report %}
+            <p><span class="pill">Студент отметил: пост удален</span></p>
+        {% else %}
+            <div class="review-grid">
+                <div class="answer-item"><span>ЖКХ</span><strong>{{ annotation.get_jkh_relevance_display }}</strong></div>
+                <div class="answer-item"><span>Тема</span><strong>{{ annotation.get_jkh_topic_display }}</strong></div>
+                <div class="answer-item"><span>Органы/службы</span><strong>{{ annotation.get_authority_aspect_display }}</strong></div>
+                <div class="answer-item"><span>Тональность</span><strong>{{ annotation.get_sentiment_display }}</strong></div>
+                <div class="answer-item"><span>Тип обращения</span><strong>{{ annotation.get_appeal_type_display }}</strong></div>
+                <div class="answer-item"><span>Ответственная сторона</span><strong>{{ annotation.get_responsible_party_display }}</strong></div>
+                <div class="answer-item"><span>Сарказм</span><strong>{{ annotation.get_sarcasm_display }}</strong></div>
+                <div class="answer-item"><span>Качество записи</span><strong>{{ annotation.get_quality_display }}</strong></div>
+            </div>
+        {% endif %}
+        {% if annotation.student_comment %}
+            <div class="record-block">
+                <h3>Комментарий студента</h3>
+                <p class="compact">{{ annotation.student_comment }}</p>
+            </div>
+        {% endif %}
+
+        <h2 style="margin-top: 20px;">Решение администратора</h2>
+        {% if annotation.is_deleted_post_report %}
+            <form method="post">
+                {% csrf_token %}
+                <div class="field">
+                    <label for="review-comment">Комментарий администратора</label>
+                    <textarea id="review-comment" name="review_comment" rows="4"></textarea>
+                </div>
+                <div class="actions">
+                    <button type="submit" name="action" value="deleted_confirm">Да, исключить запись</button>
+                    <button type="submit" name="action" value="deleted_reject" class="button danger">Нет, штраф -1</button>
+                    <a class="button secondary" href="{% url 'review_queue' %}">Назад</a>
+                </div>
+            </form>
+        {% else %}
+            <form method="post">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+                {% for field in form %}
+                    <div class="field">
+                        {{ field.label_tag }}
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+                <div class="actions">
+                    <button type="submit">Сохранить решение</button>
+                    <a class="button secondary" href="{% url 'review_queue' %}">Назад</a>
+                </div>
+            </form>
+        {% endif %}
+    </aside>
+</div>
+{% endblock %}

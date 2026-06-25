@@ -1,0 +1,556 @@
+{
+  "source": "C:/Users/OldSkull/Desktop/121121.txt",
+  "totalGroups": 240,
+  "objects": [
+    {
+      "slug": "bor",
+      "displayName": "городской округ Бор",
+      "groups": [
+        "https://vk.com/crbbor"
+      ]
+    },
+    {
+      "slug": "sarov",
+      "displayName": "Саров",
+      "groups": [
+        "https://vk.com/gorod_sarov_ru",
+        "https://vk.com/overhear_sarov",
+        "https://vk.com/zatonovosti",
+        "https://vk.com/iz_sarova",
+        "https://vk.com/govoritsarov",
+        "https://vk.com/podslushanosarov",
+        "https://vk.com/sarov52",
+        "https://vk.com/sarov_adm"
+      ]
+    },
+    {
+      "slug": "vyksa",
+      "displayName": "городской округ Выкса",
+      "groups": [
+        "https://vk.com/vyksa",
+        "https://vk.com/gorod_vyksa_ru",
+        "https://vk.com/vyksa_priznaniya",
+        "https://vk.com/vyksa_life",
+        "https://vk.com/dkvyksa",
+        "https://vk.com/okrug_wyksa"
+      ]
+    },
+    {
+      "slug": "nizhny-novgorod",
+      "displayName": "Нижний Новгород",
+      "groups": [
+        "https://vk.com/nn800",
+        "https://vk.com/chp_nn",
+        "https://vk.com/bez_cenznn",
+        "https://vk.com/typical_nn",
+        "https://vk.com/gorodnn24",
+        "https://vk.com/novgorod_52",
+        "https://vk.com/autono52",
+        "https://vk.com/moynnov",
+        "https://vk.com/governmentnnov"
+      ]
+    },
+    {
+      "slug": "shakhunya",
+      "displayName": "городской округ Шахунья",
+      "groups": [
+        "https://vk.com/shahuni",
+        "https://vk.com/shakhunia_group_52",
+        "https://vk.com/sh_news",
+        "https://vk.com/shakhunia",
+        "https://vk.com/gorod_shakhunya"
+      ]
+    },
+    {
+      "slug": "arzamas",
+      "displayName": "Арзамас",
+      "groups": [
+        "https://vk.com/gorod_arzamas",
+        "https://vk.com/helloarzamas",
+        "https://vk.com/arzamas1578",
+        "https://vk.com/my_arzamas",
+        "https://vk.com/arzpark",
+        "https://vk.com/arzamas_adm"
+      ]
+    },
+    {
+      "slug": "vad",
+      "displayName": "Вадский округ",
+      "groups": [
+        "https://vk.com/vad_ru",
+        "https://vk.com/tarakann_vad",
+        "https://vk.com/vad_adm.nnov"
+      ]
+    },
+    {
+      "slug": "vacha",
+      "displayName": "Вачский округ",
+      "groups": [
+        "https://vk.com/vacha_novosti",
+        "https://vk.com/vahskiiraion197191633",
+        "https://vk.com/vacha_adm"
+      ]
+    },
+    {
+      "slug": "spasskoe",
+      "displayName": "Спасский округ",
+      "groups": [
+        "https://vk.com/spasskoe152",
+        "https://vk.com/spasskiiraion"
+      ]
+    },
+    {
+      "slug": "uren",
+      "displayName": "Уренский округ",
+      "groups": [
+        "https://vk.com/urenadm",
+        "https://vk.com/overhearuren",
+        "https://vk.com/podslyshano_yren",
+        "https://vk.com/slushaem_uren",
+        "https://vk.com/tarakann_uren"
+      ]
+    },
+    {
+      "slug": "dzerzhinsk",
+      "displayName": "Дзержинск",
+      "groups": [
+        "https://vk.com/dzerzhinsk_group_252",
+        "https://vk.com/dzerzhinsk_detka",
+        "https://vk.com/t_dzr",
+        "https://vk.com/dzeradm"
+      ]
+    },
+    {
+      "slug": "kstovo",
+      "displayName": "Кстовский округ",
+      "groups": [
+        "https://vk.com/overheardkstovo",
+        "https://vk.com/kstovo1957",
+        "https://vk.com/kstovo_group",
+        "https://vk.com/gorod_kstovo_ru",
+        "https://vk.com/ad52k",
+        "https://vk.com/kstovoadm"
+      ]
+    },
+    {
+      "slug": "gagino",
+      "displayName": "Гагинский округ",
+      "groups": [
+        "https://vk.com/gagino_vk",
+        "https://vk.com/gag_adm"
+      ]
+    },
+    {
+      "slug": "shatki",
+      "displayName": "Шатковский округ",
+      "groups": [
+        "https://vk.com/shatki_com",
+        "https://vk.com/vse_novosti_shatki",
+        "https://vk.com/shat_adm"
+      ]
+    },
+    {
+      "slug": "gorodets",
+      "displayName": "Городецкий округ",
+      "groups": [
+        "https://vk.com/podslyshano_zavolge",
+        "https://vk.com/overhear_zavolge",
+        "https://vk.com/podslyshano_gorodets",
+        "https://vk.com/gorod_gorodets_ru",
+        "https://vk.com/thisisgorodets",
+        "https://vk.com/gorodets_zavolzhe",
+        "https://vk.com/goradm52"
+      ]
+    },
+    {
+      "slug": "sharanga",
+      "displayName": "Шарангский округ",
+      "groups": [
+        "https://vk.com/shr_omsu"
+      ]
+    },
+    {
+      "slug": "vetluga",
+      "displayName": "Ветлужский округ",
+      "groups": [
+        "https://vk.com/vetluga_vk",
+        "https://vk.com/vetlugaadm"
+      ]
+    },
+    {
+      "slug": "diveevo",
+      "displayName": "Дивеевский округ",
+      "groups": [
+        "https://vk.com/diveevo_vk",
+        "https://vk.com/tarakann_diveevo",
+        "https://vk.com/divadm52"
+      ]
+    },
+    {
+      "slug": "tonkino",
+      "displayName": "Тонкинский округ",
+      "groups": [
+        "https://vk.com/tnkadm"
+      ]
+    },
+    {
+      "slug": "lyskovo",
+      "displayName": "Лысковский округ",
+      "groups": [
+        "https://vk.com/moe_lyskovo",
+        "https://vk.com/gorod_lyskovo",
+        "https://vk.com/lyskovo_live",
+        "https://vk.com/slushaem_lyskovo",
+        "https://vk.com/lsk_news1",
+        "https://vk.com/ppravda_lsk",
+        "https://vk.com/lskadm"
+      ]
+    },
+    {
+      "slug": "sergach",
+      "displayName": "Сергачский округ",
+      "groups": [
+        "https://vk.com/sergachrevival",
+        "https://vk.com/new_sergach152",
+        "https://vk.com/sergach_group",
+        "https://vk.com/sergatsch",
+        "https://vk.com/sergachnnov"
+      ]
+    },
+    {
+      "slug": "chkalovsk",
+      "displayName": "Чкаловский округ",
+      "groups": [
+        "https://vk.com/podslushanochk",
+        "https://vk.com/chk_adm",
+        "https://vk.com/tarakann_chkalovsk"
+      ]
+    },
+    {
+      "slug": "sosnovskoe",
+      "displayName": "Сосновский округ",
+      "groups": [
+        "https://vk.com/sosnovniva74",
+        "https://vk.com/sosnovsk",
+        "https://vk.com/sosnovskiy_rayon",
+        "https://vk.com/sosnovka_podsly",
+        "https://vk.com/podslushano_sosnovka1",
+        "https://vk.com/sosnovskoe_152",
+        "https://vk.com/mososnovskoe"
+      ]
+    },
+    {
+      "slug": "sokolskoye",
+      "displayName": "Сокольский округ",
+      "groups": []
+    },
+    {
+      "slug": "pavlovo",
+      "displayName": "Павловский округ",
+      "groups": [
+        "https://vk.com/podslyshanopavlovo",
+        "https://vk.com/pavlovo4u",
+        "https://vk.com/pav_posad",
+        "https://vk.com/pp_podslushano",
+        "https://vk.com/pavlovo_official",
+        "https://vk.com/podslyshanopp",
+        "https://vk.com/pavlovskyposad_novosti"
+      ]
+    },
+    {
+      "slug": "perevoz",
+      "displayName": "Перевозский округ",
+      "groups": [
+        "https://vk.com/perevoz152",
+        "https://vk.com/perevoz001",
+        "https://vk.com/go_adm_pvz"
+      ]
+    },
+    {
+      "slug": "semenov",
+      "displayName": "Семёновский округ",
+      "groups": [
+        "https://vk.com/overheardsemenov",
+        "https://vk.com/slushaem_semenov",
+        "https://vk.com/tip_sem",
+        "https://vk.com/g.semenov",
+        "https://vk.com/podslyshano_semenov",
+        "https://vk.com/semenov_adm"
+      ]
+    },
+    {
+      "slug": "tonshaevo",
+      "displayName": "Тоншаевский округ",
+      "groups": [
+        "https://vk.com/tonshaevo_city",
+        "https://vk.com/tarakann_tonshaevo",
+        "https://vk.com/tonsh52reg"
+      ]
+    },
+    {
+      "slug": "navashino",
+      "displayName": "Навашинский округ",
+      "groups": [
+        "https://vk.com/navaschino",
+        "https://vk.com/podsluhano_kvn",
+        "https://vk.com/pr.pravda",
+        "https://vk.com/navashlife"
+      ]
+    },
+    {
+      "slug": "sechenovo",
+      "displayName": "Сеченовский округ",
+      "groups": [
+        "https://vk.com/sech_adm",
+        "https://vk.com/sech_adm",
+        "https://vk.com/sechenovo"
+      ]
+    },
+    {
+      "slug": "vorotynets",
+      "displayName": "Воротынский округ",
+      "groups": [
+        "https://vk.com/govorot",
+        "https://vk.com/kng_adm"
+      ]
+    },
+    {
+      "slug": "volodarsk",
+      "displayName": "Володарский округ",
+      "groups": [
+        "https://vk.com/posvolodarskogo",
+        "https://vk.com/podslyshanovolodarka",
+        "https://vk.com/adm.vldr.nnov"
+      ]
+    },
+    {
+      "slug": "ardatov",
+      "displayName": "Ардатовский округ",
+      "groups": [
+        "https://vk.com/ardatov_52",
+        "https://vk.com/podslushano_amg",
+        "https://vk.com/hello_ardatov",
+        "https://vk.com/ardatov_rm"
+      ]
+    },
+    {
+      "slug": "pilna",
+      "displayName": "Пильнинский округ",
+      "groups": [
+        "https://vk.com/pilna152",
+        "https://vk.com/pilna_club",
+        "https://vk.com/official.adm.pilna"
+      ]
+    },
+    {
+      "slug": "arzamas-district",
+      "displayName": "Арзамасский округ",
+      "groups": []
+    },
+    {
+      "slug": "kulebaki",
+      "displayName": "Кулебакский округ",
+      "groups": [
+        "https://vk.com/pkulebaki",
+        "https://vk.com/kulebaki_group_52",
+        "https://vk.com/kulebakiok",
+        "https://vk.com/kulebakinn",
+        "https://vk.com/kulebakiru",
+        "https://vk.com/kulebakirf",
+        "https://vk.com/kulebaki_adm"
+      ]
+    },
+    {
+      "slug": "bogorodsk",
+      "displayName": "Богородский округ",
+      "groups": [
+        "https://vk.com/podsluh_bog",
+        "https://vk.com/ves_bogorodsk",
+        "https://vk.com/bogorodskij",
+        "https://vk.com/podslyshano_bogorodsk",
+        "https://vk.com/bogoroditsk.tularegion",
+        "https://vk.com/gazetaznamya"
+      ]
+    },
+    {
+      "slug": "balakhna",
+      "displayName": "Балахнинский округ",
+      "groups": [
+        "https://vk.com/gorod_balakhna_ru",
+        "https://vk.com/podslyshano_balahna",
+        "https://vk.com/balahnalive",
+        "https://vk.com/golosbalahna",
+        "https://vk.com/slushaem_balakhna",
+        "https://vk.com/baladm"
+      ]
+    },
+    {
+      "slug": "knyaginino",
+      "displayName": "Княгининский округ",
+      "groups": [
+        "https://vk.com/knyagininotv",
+        "https://vk.com/tarakann_knyaginino"
+      ]
+    },
+    {
+      "slug": "kovernino",
+      "displayName": "Ковернинский округ",
+      "groups": [
+        "https://vk.com/kovernino_adm"
+      ]
+    },
+    {
+      "slug": "buturlino",
+      "displayName": "Бутурлинский округ",
+      "groups": [
+        "https://vk.com/buturlinoadm"
+      ]
+    },
+    {
+      "slug": "lukoyanov",
+      "displayName": "Лукояновский округ",
+      "groups": [
+        "https://vk.com/lukoyanov_nn",
+        "https://vk.com/tarakann_lukoyanov",
+        "https://vk.com/lukadm"
+      ]
+    },
+    {
+      "slug": "pervomaysk",
+      "displayName": "Первомайский округ",
+      "groups": []
+    },
+    {
+      "slug": "varnavino",
+      "displayName": "Варнавинский округ",
+      "groups": [
+        "https://vk.com/tarakann_varnavino"
+      ]
+    },
+    {
+      "slug": "pochinki",
+      "displayName": "Починковский округ",
+      "groups": [
+        "https://vk.com/pochinki_adm52"
+      ]
+    },
+    {
+      "slug": "voznesenskoe",
+      "displayName": "Вознесенский округ",
+      "groups": [
+        "https://vk.com/podslyshano_voznesenskoe",
+        "https://vk.com/vozadm52"
+      ]
+    },
+    {
+      "slug": "voskresenskoe",
+      "displayName": "Воскресенский округ",
+      "groups": [
+        "https://vk.com/voskresensk_go",
+        "https://vk.com/voskresensk_official",
+        "https://vk.com/vos_life"
+      ]
+    },
+    {
+      "slug": "krasnye-baki",
+      "displayName": "Краснобаковский округ",
+      "groups": [
+        "https://vk.com/krbakivpered",
+        "https://vk.com/krbaki.nnov"
+      ]
+    },
+    {
+      "slug": "bolshoe-boldino",
+      "displayName": "Большеболдинский округ",
+      "groups": [
+        "https://vk.com/boldinoadm"
+      ]
+    },
+    {
+      "slug": "krasny-oktyabr",
+      "displayName": "Краснооктябрьский округ",
+      "groups": []
+    },
+    {
+      "slug": "bolshoe-murashkino",
+      "displayName": "Большемурашкинский округ",
+      "groups": [
+        "https://vk.com/bmur_adm"
+      ]
+    },
+    {
+      "slug": "dalnee-konstantinovo",
+      "displayName": "Дальнеконстантиновский округ",
+      "groups": [
+        "https://vk.com/dkmo52"
+      ]
+    }
+  ],
+  "unmatchedGroups": [
+    "https://vk.com/novostiviksa",
+    "https://vk.com/tip_zav",
+    "https://vk.com/ulngo",
+    "https://vk.com/pod_zav",
+    "https://vk.com/podslushano_z",
+    "https://vk.com/club231357375",
+    "https://vk.com/overhear_pp",
+    "https://vk.com/club230591698",
+    "https://vk.com/club231369256",
+    "https://vk.com/public162355281",
+    "https://vk.com/public220256682",
+    "https://vk.com/club231379088",
+    "https://vk.com/club227611825",
+    "https://vk.com/club231577149",
+    "https://vk.com/film_timee",
+    "https://vk.com/noginskypob154881265",
+    "https://vk.com/public186090704",
+    "https://vk.com/club227611864",
+    "https://vk.com/club227612694",
+    "https://vk.com/podslyshano_vetlyga",
+    "https://vk.com/club227614099",
+    "https://vk.com/club227614154",
+    "https://vk.com/club227614167",
+    "https://vk.com/club112165505",
+    "https://vk.com/zvllive",
+    "https://vk.com/tarakann_gorodec",
+    "https://vk.com/club227614177",
+    "https://vk.com/club227614189",
+    "https://vk.com/club161476884",
+    "https://vk.com/club227619608",
+    "https://vk.com/club227619612",
+    "https://vk.com/tipicalsdfr",
+    "https://vk.com/krookt",
+    "https://vk.com/public97441340",
+    "https://vk.com/club227619625",
+    "https://vk.com/public61684544",
+    "https://vk.com/club217857268",
+    "https://vk.com/club227622710",
+    "https://vk.com/club227622739",
+    "https://vk.com/club159999835",
+    "https://vk.com/public164451574",
+    "https://vk.com/club227632120",
+    "https://vk.com/public73814269",
+    "https://vk.com/club227808171",
+    "https://vk.com/club227632140",
+    "https://vk.com/club227611856",
+    "https://vk.com/club227612686",
+    "https://vk.com/club227612701",
+    "https://vk.com/public166555066",
+    "https://vk.com/vatha_official",
+    "https://vk.com/club227612709",
+    "https://vk.com/club227614104",
+    "https://vk.com/club232434830",
+    "https://vk.com/club227614160",
+    "https://vk.com/club227614185",
+    "https://vk.com/club227614196",
+    "https://vk.com/club227622721",
+    "https://vk.com/pochinkovskiy67",
+    "https://vk.com/sosarg",
+    "https://vk.com/public166714467",
+    "https://vk.com/club227632144",
+    "https://vk.com/club227632156",
+    "https://vk.com/club227632157",
+    "https://vk.com/club227632167",
+    "https://vk.com/uspehtvoy1"
+  ]
+}

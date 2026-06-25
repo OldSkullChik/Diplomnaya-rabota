@@ -1,0 +1,15 @@
+[Unit]
+Description=Diplom annotation server gunicorn service
+After=network.target postgresql.service
+
+[Service]
+User=oldskull
+Group=www-data
+WorkingDirectory=/home/oldskull/apps/Diplomnaya-rabota
+EnvironmentFile=/home/oldskull/apps/Diplomnaya-rabota/.env
+ExecStart=/home/oldskull/apps/Diplomnaya-rabota/.venv/bin/gunicorn labeling_server.wsgi:application --bind 127.0.0.1:8000 --workers 2 --timeout 60
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

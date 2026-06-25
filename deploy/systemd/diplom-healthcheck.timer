@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Diplom annotation server healthcheck every two minutes
+
+[Timer]
+OnBootSec=2min
+OnUnitActiveSec=2min
+AccuracySec=30s
+Unit=diplom-healthcheck.service
+
+[Install]
+WantedBy=timers.target

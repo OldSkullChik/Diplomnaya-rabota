@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}Проверка{% endblock %}
+{% block content %}
+<div class="page-head">
+    <div>
+        <h1>Очередь проверки</h1>
+        <p class="lede compact">Краткая сводка по каждой разметке: контекст, ответ студента и быстрые решения без перехода в карточку.</p>
+    </div>
+</div>
+
+<section class="surface">
+    {% if annotations %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Студент</th>
+                        <th>Комментарий и пост</th>
+                        <th>Ответ студента</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for item in annotations %}
+                        <tr>
+                            <td>
+                                <strong>{{ item.student.username }}</strong><br>
+                                <span class="muted">{{ item.student.first_name }} {{ item.student.last_name }}</span><br>
+                                <span class="muted">{{ item.submitted_at|date:"d.m.Y H:i" }}</span>
+                            </td>
+                            <td class="queue-text">
+                                <strong>Комментарий</strong><br>
+                                {{ item.record.text|truncatechars:360 }}<br><br>
+                                <strong>Пост</strong><br>
+                                {% if item.record.post_text %}
+                                    {{ item.record.post_text|truncatechars:360 }}
+                                {% else %}
+                                    <span class="muted">Контекст поста отсутствует.</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if item.is_deleted_post_report %}
+                                    <span class="pill">Пост удален</span>
+                                    {% if item.student_comment %}<p class="muted">{{ item.student_comment }}</p>{% endif %}
+                                {% else %}
+                                    <div class="meta-row">
+                                        <span class="pill">ЖКХ: {{ item.get_jkh_relevance_display }}</span>
+                                        <span class="pill">Тема: {{ item.get_jkh_topic_display }}</span>
+                                        <span class="pill">Органы: {{ item.get_authority_aspect_display }}</span>
+                                        <span class="pill">Тон: {{ item.get_sentiment_display }}</span>
+                                        <span class="pill">Тип: {{ item.get_appeal_type_display }}</span>
+                                        <span class="pill">Ответственный: {{ item.get_responsible_party_display }}</span>
+                                        <span class="pill">Сарказм: {{ item.get_sarcasm_display }}</span>
+                                        <span class="pill">Качество: {{ item.get_quality_display }}</span>
+                                    </div>
+                                    {% if item.student_comment %}
+                                        <p class="muted">{{ item.student_comment }}</p>
+                                    {% endif %}
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if item.is_deleted_post_report %}
+                                    <form method="post" action="{% url 'quick_review_annotation' item.id %}" style="display:inline">
+                                        {% csrf_token %}
+                                        <button type="submit" name="action" value="deleted_confirm">Да</button>
+                                    </form>
+                                    <form method="post" action="{% url 'quick_review_annotation' item.id %}" style="display:inline">
+                                        {% csrf_token %}
+                                        <button type="submit" name="action" value="deleted_reject" class="button danger">Нет (-1)</button>
+                                    </form>
+                                {% else %}
+                                    <form method="post" action="{% url 'quick_review_annotation' item.id %}" style="display:inline">
+                                        {% csrf_token %}
+                                        <button type="submit" name="action" value="approve">Принять (+1)</button>
+                                    </form>
+                                    <form method="post" action="{% url 'quick_review_annotation' item.id %}" style="display:inline">
+                                        {% csrf_token %}
+                                        <button type="submit" name="action" value="reject" class="button danger">Брак (-2)</button>
+                                    </form>
+                                {% endif %}
+                                <div class="actions" style="margin-top: 10px;">
+                                    <a class="button secondary" href="{% url 'review_annotation' item.id %}">Открыть</a>
+                                </div>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="compact">Новых ответов на проверку нет.</p>
+    {% endif %}
+</section>
+{% endblock %}

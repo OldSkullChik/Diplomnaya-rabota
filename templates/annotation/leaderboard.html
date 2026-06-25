@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block title %}Статистика{% endblock %}
+{% block content %}
+<div class="page-head">
+    <div>
+        <h1>Общая статистика</h1>
+        <p class="lede compact">Полный список участников, баллы, количество разметок и текущая серия принятых ответов.</p>
+    </div>
+</div>
+
+<section class="surface">
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Логин</th>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Публичное имя</th>
+                    <th>Баллы</th>
+                    <th>Разметок</th>
+                    <th>Стрик</th>
+                    <th>Корректировка</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in leaderboard %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td><strong>{{ row.user.username }}</strong></td>
+                        <td>{{ row.user.first_name|default:"-" }}</td>
+                        <td>{{ row.user.last_name|default:"-" }}</td>
+                        <td>{{ row.display_name }}</td>
+                        <td>{{ row.score }}</td>
+                        <td>{{ row.annotation_count }}</td>
+                        <td>{{ row.streak }}</td>
+                        <td>
+                            <form method="post" action="{% url 'adjust_score' row.user.id %}">
+                                {% csrf_token %}
+                                <div class="form-grid" style="grid-template-columns: 110px minmax(180px, 1fr); gap: 8px;">
+                                    <input type="number" name="points" placeholder="+/-" required>
+                                    <input type="text" name="reason" placeholder="Причина корректировки">
+                                </div>
+                                <div class="actions" style="margin-top: 8px;">
+                                    <button type="submit">Сохранить</button>
+                                </div>
+                            </form>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr><td colspan="9">Пока нет участников для статистики.</td></tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

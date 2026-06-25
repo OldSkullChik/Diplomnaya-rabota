@@ -1,0 +1,46 @@
+.venv/
+.venv-ml/
+.idea/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+/*.docx
+/*.png
+/*.jpg
+/*.jpeg
+/*.webp
+*.sqlite3
+db.sqlite3
+
+# Local runtime files
+.env
+.env.*
+!.env.example
+*.log
+runtime/
+AGENTS.md
+docs/chat_context.md
+desktop_dashboard/main_old.py
+desktop_dashboard/assets/static_dashboard_snapshot.json
+
+# Reference projects used for reading/study only.
+Normalizaciya/
+
+# Large/generated project artifacts, if they appear in the working repo.
+raw/
+model/
+model_v2/
+charts/
+structured/*.csv
+
+# Runtime uploads/exports/static build output.
+data/
+media/
+staticfiles/
+exports/

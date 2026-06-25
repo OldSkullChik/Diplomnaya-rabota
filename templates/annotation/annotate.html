@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% block title %}Разметка записи{% endblock %}
+{% block content %}
+<div class="page-head">
+    <div>
+        <h1>Разметка записи</h1>
+        <p class="lede compact">Тема записи определяется по посту. Затем оцените общественную реакцию в комментарии: она уточняет смысл, но не меняет направление темы. Короткая реакция под постом о ЖКХ остается частью такого обсуждения.</p>
+    </div>
+    <div class="meta-row">
+        <span class="pill">готово: {{ user_done }}</span>
+        <span class="pill">осталось: {{ remaining }}</span>
+        <span class="pill">всего активно: {{ active_records }}</span>
+    </div>
+</div>
+
+<div class="workbench">
+    <section class="surface">
+        <div class="meta-row">
+            <span class="pill">ID {{ record.id }}</span>
+            {% if record.group_name %}<span class="pill">{{ record.group_name }}</span>{% endif %}
+            {% if record.source_name %}<span class="pill">{{ record.source_name }}</span>{% endif %}
+            {% if record.source_url %}
+                <a class="pill source-link" href="{{ record.source_url }}" target="_blank" rel="noopener">Открыть источник</a>
+            {% endif %}
+        </div>
+
+        {% if record.post_text %}
+            <div class="record-block">
+                <h2>Контекст поста</h2>
+                <div class="record-text">{{ record.post_text }}</div>
+            </div>
+        {% else %}
+            <div class="record-block">
+                <h2>Контекст поста</h2>
+                <div class="record-text muted">Контекст поста для этой записи не найден. Если из-за этого сложно разметить комментарий, выберите качество “Не хватает контекста”.</div>
+            </div>
+        {% endif %}
+
+        <div class="record-block">
+            <h2>Текст для разметки</h2>
+            <div class="record-text comment-text">{{ record.text }}</div>
+        </div>
+    </section>
+
+    <section class="surface sticky-side">
+        <h2>Решение разметчика</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            <div class="form-grid">
+                {% for field in form %}
+                    <div class="field {% if field.name == 'student_comment' %}full{% endif %}" data-field="{{ field.name }}">
+                        <div class="field-label-row">
+                            {{ field.label_tag }}
+                            {% if field.help_text %}
+                                <button type="button" class="help-button" aria-label="Подсказка: {{ field.label }}" title="{{ field.help_text }}">
+                                    ?
+                                    <span class="tooltip-text">{{ field.help_text }}</span>
+                                </button>
+                            {% endif %}
+                        </div>
+                        {{ field }}
+                        {{ field.errors }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="actions">
+                <button type="submit">Отправить на проверку</button>
+                <button type="submit" name="action" value="deleted_post" formnovalidate class="button secondary">Пост удален</button>
+                <a class="button secondary" href="{% url 'annotate_next' %}">Пропустить запись</a>
+            </div>
+        </form>
+    </section>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    (function () {
+        const relevance = document.getElementById("id_jkh_relevance");
+        const form = relevance ? relevance.closest("form") : null;
+        const forcedFields = {
+            jkh_topic: "not_jkh",
+            authority_aspect: "not_applicable",
+            responsible_party: "not_applicable",
+        };
+
+        function syncNotJkhFields() {
+            const lock = relevance && relevance.value === "no";
+            Object.entries(forcedFields).forEach(([name, value]) => {
+                const field = document.getElementById("id_" + name);
+                if (!field) return;
+                const wrapper = field.closest(".field");
+                if (lock) {
+                    field.value = value;
+                    field.disabled = true;
+                    field.setAttribute("aria-disabled", "true");
+                    if (wrapper) wrapper.classList.add("is-locked");
+                } else {
+                    field.disabled = false;
+                    field.removeAttribute("aria-disabled");
+                    if (wrapper) wrapper.classList.remove("is-locked");
+                }
+            });
+        }
+
+        if (relevance) {
+            relevance.addEventListener("change", syncNotJkhFields);
+            syncNotJkhFields();
+        }
+
+        if (form) {
+            form.addEventListener("submit", function () {
+                Object.keys(forcedFields).forEach((name) => {
+                    const field = document.getElementById("id_" + name);
+                    if (field) field.disabled = false;
+                });
+            });
+        }
+    })();
+</script>
+{% endblock %}

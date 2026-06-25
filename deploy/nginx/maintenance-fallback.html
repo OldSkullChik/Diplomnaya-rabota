@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Сервис временно недоступен</title>
+    <style>
+        :root {
+            --bg: #071313;
+            --text: #f8fafc;
+            --muted: #a9bdc0;
+            --line: rgba(145, 232, 226, 0.22);
+            --cyan: #61e6df;
+            --red: #ff3b24;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 28px;
+            background:
+                radial-gradient(circle at 50% 30%, rgba(86, 228, 219, 0.17), transparent 34%),
+                radial-gradient(circle at 50% 62%, rgba(255, 59, 36, 0.14), transparent 30%),
+                linear-gradient(180deg, #0f1d1d 0%, var(--bg) 55%, #050b0c 100%);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
+        }
+
+        .box {
+            width: min(980px, 100%);
+        }
+
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            min-height: 34px;
+            margin-bottom: 18px;
+            padding: 7px 11px;
+            border: 1px solid rgba(255, 59, 36, 0.45);
+            border-radius: 8px;
+            background: rgba(8, 23, 24, 0.72);
+            color: #ffd0c8;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .status::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--red);
+            box-shadow: 0 0 16px rgba(255, 59, 36, 0.95);
+        }
+
+        .visual {
+            width: min(760px, 100%);
+            margin: 0 auto 14px;
+            position: relative;
+        }
+
+        .visual::before {
+            content: "";
+            position: absolute;
+            inset: 11% 8% 2%;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle, rgba(97, 230, 223, 0.35), transparent 63%),
+                radial-gradient(circle, rgba(255, 59, 36, 0.28), transparent 52%);
+            filter: blur(34px);
+            opacity: 0.82;
+        }
+
+        .visual img {
+            width: 100%;
+            display: block;
+            position: relative;
+            filter: drop-shadow(0 28px 90px rgba(0, 0, 0, 0.58));
+        }
+
+        h1 {
+            margin: -6px auto 12px;
+            font-size: clamp(34px, 6vw, 60px);
+            line-height: 1.05;
+            letter-spacing: 0;
+        }
+
+        p {
+            max-width: 620px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: 19px;
+            line-height: 1.55;
+        }
+    </style>
+</head>
+<body>
+    <main class="box">
+        <div class="status">аварийный экран nginx</div>
+        <div class="visual">
+            <img src="/static/annotation/img/error.png" alt="">
+        </div>
+        <h1>Сервис перезапускается</h1>
+        <p>Разметчик временно недоступен. Сервер уже пытается восстановить работу, попробуйте обновить страницу через пару минут.</p>
+    </main>
+</body>
+</html>

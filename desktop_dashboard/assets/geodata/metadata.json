@@ -1,0 +1,10 @@
+﻿{
+    "adm0Api":  "https://www.geoboundaries.org/api/current/gbOpen/RUS/ADM0",
+    "adm1Download":  "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/RUS/ADM1/geoBoundaries-RUS-ADM1_simplified.geojson",
+    "source":  "geoBoundaries gbOpen",
+    "downloadedAt":  "2026-06-07T03:00:09",
+    "adm0Download":  "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/RUS/ADM0/geoBoundaries-RUS-ADM0_simplified.geojson",
+    "adm1Api":  "https://www.geoboundaries.org/api/current/gbOpen/RUS/ADM1",
+    "adm2Api":  "https://www.geoboundaries.org/api/current/gbOpen/RUS/ADM2",
+    "adm2Download":  "https://github.com/wmgeolab/geoBoundaries/raw/9469f09/releaseData/gbOpen/RUS/ADM2/geoBoundaries-RUS-ADM2_simplified.geojson"
+}

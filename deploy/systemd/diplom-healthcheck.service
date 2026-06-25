@@ -1,0 +1,7 @@
+[Unit]
+Description=Diplom annotation server healthcheck and repair
+After=network.target nginx.service diplom-gunicorn.service postgresql.service
+
+[Service]
+Type=oneshot
+ExecStart=/home/oldskull/apps/Diplomnaya-rabota/deploy/support/diplom-repair.sh

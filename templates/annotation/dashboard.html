@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Главная{% endblock %}
+{% block content %}
+<div class="page-head">
+    <div>
+        <h1>Рабочая панель</h1>
+        <p class="lede compact">Здесь видно личный прогресс и состояние очереди. Баллы появляются только после проверки администратором.</p>
+    </div>
+</div>
+
+{% if campaign %}
+<section class="surface">
+    <h2>Активен целевой этап сбора данных</h2>
+    <p class="muted compact">В очереди находится рабочая выборка текущего этапа исследования.</p>
+    {% if admin_mode %}
+        <p class="compact">Кандидаты ЖКХ: <strong>{{ campaign.candidate_count }}</strong>; контрольные записи: <strong>{{ campaign.control_count }}</strong>; целевое соотношение: <strong>{{ campaign.candidate_ratio }}:1</strong>.</p>
+    {% endif %}
+</section>
+{% endif %}
+
+<div class="stat-grid">
+    <div class="stat"><strong>{{ score }}</strong><span>утвержденных баллов</span></div>
+    <div class="stat"><strong>{{ stats.submitted }}</strong><span>моих разметок всего</span></div>
+    <div class="stat"><strong>{{ stats.approved }}</strong><span>принято</span></div>
+    <div class="stat"><strong>{{ stats.rejected }}</strong><span>отклонено</span></div>
+    <div class="stat"><strong>{{ stats.records }}</strong><span>{% if campaign %}записей в текущей выборке{% else %}активных записей в базе{% endif %}</span></div>
+    <div class="stat"><strong>{{ stats.pending_review }}</strong><span>ожидает проверки</span></div>
+</div>
+
+<section class="surface">
+    <div class="page-head" style="margin-bottom: 12px;">
+        <div>
+            <h2>Лидеры разметки</h2>
+            <p class="muted compact">Топ-10 по текущим баллам, количеству разметок и серии принятых ответов подряд.</p>
+        </div>
+        {% if is_project_superadmin %}
+            <a class="button secondary" href="{% url 'leaderboard_full' %}">Весь список</a>
+        {% endif %}
+    </div>
+    {% if leaderboard %}
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Участник</th>
+                        <th>Баллы</th>
+                        <th>Разметок</th>
+                        <th>Стрик</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in leaderboard %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ row.display_name }}</td>
+                            <td>{{ row.score }}</td>
+                            <td>{{ row.annotation_count }}</td>
+                            <td>{{ row.streak }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p class="compact">Пока нет данных для общей статистики.</p>
+    {% endif %}
+</section>
+
+<section class="surface">
+    <h2>Следующее действие</h2>
+    <p class="muted">Откройте следующую запись из очереди. Система сама пропустит то, что вы уже размечали.</p>
+    <div class="actions">
+        <a class="button" href="{% url 'annotate_next' %}">Начать разметку</a>
+        {% if admin_mode %}
+            <a class="button secondary" href="{% url 'review_queue' %}">Проверять ответы</a>
+            <a class="button secondary" href="{% url 'participant_list' %}">Утверждать пользователей</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

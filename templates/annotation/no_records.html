@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Нет записей{% endblock %}
+{% block content %}
+<section class="surface empty-state">
+    <h1>Свободных записей пока нет</h1>
+    <p class="lede">Все доступные записи уже размечены вами или очередь еще не загружена. Можно вернуться на рабочую панель и проверить статистику.</p>
+    <div class="actions" style="justify-content: center;">
+        <a class="button secondary" href="{% url 'dashboard' %}">На главную</a>
+    </div>
+</section>
+{% endblock %}

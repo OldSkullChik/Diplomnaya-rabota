@@ -1,0 +1,12 @@
+[Unit]
+Description=Diplom annotation server PostgreSQL backup
+After=postgresql.service
+
+[Service]
+Type=oneshot
+User=oldskull
+Group=oldskull
+Environment=ENV_FILE=/home/oldskull/apps/Diplomnaya-rabota/.env
+Environment=BACKUP_DIR=/home/oldskull/backups/diplom
+Environment=RETENTION_DAYS=14
+ExecStart=/home/oldskull/apps/Diplomnaya-rabota/deploy/backup/diplom-db-backup.sh

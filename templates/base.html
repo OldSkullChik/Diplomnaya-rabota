@@ -1,0 +1,510 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Разметчик ЖКХ{% endblock %}</title>
+    <style>
+        :root {
+            --bg: #f4f6f8;
+            --surface: #ffffff;
+            --surface-soft: #f8fafc;
+            --text: #172033;
+            --muted: #667085;
+            --line: #d9e0ea;
+            --accent: #1f6feb;
+            --accent-dark: #174ea6;
+            --ok: #16794c;
+            --warning: #a15c00;
+            --danger: #b42318;
+            --shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 17px;
+            line-height: 1.5;
+        }
+
+        a { color: var(--accent); }
+
+        h1, h2, h3, p { margin-top: 0; }
+        h1 { font-size: 30px; line-height: 1.15; margin-bottom: 10px; }
+        h2 { font-size: 20px; line-height: 1.25; margin-bottom: 12px; }
+        h3 { font-size: 16px; line-height: 1.25; margin-bottom: 8px; }
+
+        .topbar {
+            background: #111827;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .topbar-inner {
+            max-width: 1320px;
+            min-height: 66px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+        }
+
+        .brand {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            font-weight: 700;
+            letter-spacing: 0;
+        }
+
+        .brand small {
+            color: #cbd5e1;
+            font-size: 13px;
+            font-weight: 400;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .nav a,
+        .nav button {
+            min-height: 38px;
+            padding: 8px 12px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: white;
+            font: inherit;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .nav a:hover,
+        .nav button:hover {
+            background: rgba(255, 255, 255, 0.09);
+            border-color: rgba(255, 255, 255, 0.16);
+        }
+
+        .nav-role {
+            min-height: 32px;
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 9px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.11);
+            color: #e5e7eb;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        main {
+            max-width: 1320px;
+            margin: 24px auto 40px;
+            padding: 0 20px;
+        }
+
+        .page-head {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            gap: 18px;
+            margin-bottom: 18px;
+        }
+
+        .surface {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 22px;
+            box-shadow: var(--shadow);
+        }
+
+        .surface + .surface { margin-top: 18px; }
+
+        .muted { color: var(--muted); }
+        .lede {
+            max-width: 760px;
+            color: var(--muted);
+            font-size: 18px;
+        }
+        .compact { margin-bottom: 0; }
+
+        .auth-shell {
+            max-width: 560px;
+            margin: 0 auto;
+        }
+
+        .empty-state {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .messages { margin-bottom: 16px; }
+        .message {
+            padding: 12px 14px;
+            border-radius: 8px;
+            background: #e8f1ff;
+            border: 1px solid #b8d4ff;
+            margin-bottom: 8px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 14px;
+            margin: 18px 0;
+        }
+
+        .stat {
+            min-height: 112px;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .stat strong {
+            display: block;
+            font-size: 32px;
+            line-height: 1.1;
+            margin-bottom: 8px;
+        }
+
+        .stat span {
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 18px;
+        }
+
+        .button,
+        button[type="submit"] {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 44px;
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: 1px solid transparent;
+            background: var(--accent);
+            color: white;
+            font: inherit;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .button:hover,
+        button[type="submit"]:hover { background: var(--accent-dark); }
+
+        .button.secondary {
+            background: white;
+            color: var(--text);
+            border-color: var(--line);
+        }
+
+        .button.secondary:hover { background: var(--surface-soft); }
+        .button.danger { background: var(--danger); }
+
+        .workbench {
+            display: grid;
+            grid-template-columns: minmax(0, 1.05fr) minmax(360px, 0.95fr);
+            gap: 18px;
+            align-items: start;
+        }
+
+        .sticky-side {
+            position: sticky;
+            top: 18px;
+        }
+
+        .record-block + .record-block { margin-top: 16px; }
+
+        .record-text {
+            max-height: 46vh;
+            overflow: auto;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+            font-size: 18px;
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 16px;
+        }
+
+        .comment-text {
+            font-size: 20px;
+            background: #fffdf7;
+            border-color: #ead9a7;
+        }
+
+        .meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin: 12px 0 0;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            min-height: 30px;
+            padding: 5px 9px;
+            border-radius: 8px;
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .source-link {
+            max-width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .table-wrap {
+            overflow: auto;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: var(--surface);
+        }
+
+        .table-wrap table {
+            min-width: 760px;
+            border: 0;
+            border-radius: 0;
+        }
+
+        .queue-text {
+            max-width: 520px;
+            color: #344054;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 7px;
+            font-weight: 700;
+        }
+
+        form select,
+        form input,
+        form textarea {
+            width: 100%;
+            min-height: 42px;
+            padding: 10px 11px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: white;
+            color: var(--text);
+            font: inherit;
+        }
+
+        form textarea { resize: vertical; }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .field { margin-bottom: 14px; }
+        .field.full { grid-column: 1 / -1; }
+        .helptext { color: var(--muted); font-size: 14px; margin-top: 5px; }
+        .errorlist { color: var(--danger); margin: 6px 0 0; padding-left: 18px; }
+
+        .field-label-row {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-bottom: 7px;
+        }
+
+        .field-label-row label { margin-bottom: 0; }
+
+        .help-button {
+            position: relative;
+            width: 24px;
+            height: 24px;
+            min-height: 24px;
+            padding: 0;
+            border-radius: 999px;
+            border: 1px solid #b8c4d6;
+            background: #eef4ff;
+            color: var(--accent-dark);
+            font: inherit;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1;
+            cursor: help;
+        }
+
+        .help-button:hover,
+        .help-button:focus {
+            background: #dbeafe;
+            outline: 2px solid rgba(31, 111, 235, 0.18);
+            outline-offset: 1px;
+        }
+
+        .help-button .tooltip-text {
+            position: absolute;
+            z-index: 20;
+            left: 50%;
+            bottom: calc(100% + 10px);
+            width: min(360px, 80vw);
+            transform: translateX(-50%);
+            display: none;
+            padding: 12px 13px;
+            border-radius: 8px;
+            border: 1px solid var(--line);
+            background: #111827;
+            color: white;
+            box-shadow: var(--shadow);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.4;
+            text-align: left;
+        }
+
+        .help-button:hover .tooltip-text,
+        .help-button:focus .tooltip-text { display: block; }
+
+        .field.is-locked select {
+            background: #eef2f7;
+            color: var(--muted);
+            cursor: not-allowed;
+        }
+
+        .field.is-locked::after {
+            content: "Заполнено автоматически, потому что запись не относится к ЖКХ";
+            display: block;
+            color: var(--muted);
+            font-size: 13px;
+            margin-top: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            border-bottom: 1px solid var(--line);
+            text-align: left;
+            padding: 12px;
+            vertical-align: top;
+        }
+
+        th {
+            background: #eef2f7;
+            font-size: 14px;
+            color: #344054;
+        }
+
+        tr:last-child td { border-bottom: 0; }
+
+        .review-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 12px;
+        }
+
+        .answer-item {
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 13px;
+            background: var(--surface-soft);
+        }
+
+        .answer-item span {
+            display: block;
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+
+        .answer-item strong { font-size: 17px; }
+
+        @media (max-width: 920px) {
+            .workbench { grid-template-columns: 1fr; }
+            .sticky-side { position: static; }
+            .record-text { max-height: none; }
+        }
+
+        @media (max-width: 720px) {
+            body { font-size: 16px; }
+            .topbar-inner { align-items: flex-start; flex-direction: column; padding: 12px 16px; }
+            main { padding: 0 14px; margin-top: 18px; }
+            .page-head { align-items: flex-start; flex-direction: column; }
+            .surface { padding: 16px; }
+            .form-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="topbar">
+        <div class="topbar-inner">
+            <div class="brand">
+                <span>Разметчик обращений ЖКХ</span>
+                <small>очередь данных для ручной проверки</small>
+            </div>
+            <nav class="nav">
+                {% if user.is_authenticated %}
+                    <a href="{% url 'dashboard' %}">Главная</a>
+                    <a href="{% url 'annotate_next' %}">Разметка</a>
+                    {% if is_annotation_admin %}
+                        <a href="{% url 'review_queue' %}">Проверка</a>
+                        <a href="{% url 'participant_list' %}">Пользователи</a>
+                    {% endif %}
+                    {% if is_project_superadmin %}
+                        <a href="{% url 'leaderboard_full' %}">Статистика</a>
+                    {% endif %}
+                    {% if is_project_superadmin %}
+                        <a href="/admin/">Админка</a>
+                    {% elif user.is_staff and is_annotation_admin %}
+                        <a href="/admin/">Админка</a>
+                    {% endif %}
+                    {% if project_role_label %}<span class="nav-role">{{ project_role_label }}</span>{% endif %}
+                    <form method="post" action="{% url 'logout' %}" style="display:inline">{% csrf_token %}<button type="submit">Выйти</button></form>
+                {% else %}
+                    <a href="{% url 'login' %}">Войти</a>
+                    <a href="{% url 'signup' %}">Регистрация</a>
+                {% endif %}
+            </nav>
+        </div>
+    </header>
+    <main>
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        {% block content %}{% endblock %}
+    </main>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

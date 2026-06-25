@@ -1,0 +1,26 @@
+services:
+  db:
+    image: postgres:17
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-diplom}
+      POSTGRES_USER: ${POSTGRES_USER:-diplom}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-change-me}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: .
+    restart: unless-stopped
+    env_file:
+      - .env
+    environment:
+      DATABASE_URL: postgres://${POSTGRES_USER:-diplom}:${POSTGRES_PASSWORD:-change-me}@db:5432/${POSTGRES_DB:-diplom}
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
+

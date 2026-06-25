@@ -1,0 +1,10 @@
+[Unit]
+Description=Run Diplom VK monitoring test collector hourly
+
+[Timer]
+OnCalendar=hourly
+Persistent=true
+RandomizedDelaySec=180
+
+[Install]
+WantedBy=timers.target

@@ -1,0 +1,240 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ maintenance.title }}</title>
+    <style>
+        :root {
+            --bg: #071313;
+            --bg-soft: #0d2223;
+            --text: #f8fafc;
+            --muted: #a9bdc0;
+            --line: rgba(145, 232, 226, 0.22);
+            --cyan: #61e6df;
+            --red: #ff3b24;
+            --amber: #ffb84a;
+            --shadow: 0 28px 90px rgba(0, 0, 0, 0.58);
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            min-height: 100vh;
+            margin: 0;
+            display: grid;
+            place-items: center;
+            padding: 28px;
+            background:
+                radial-gradient(circle at 50% 30%, rgba(86, 228, 219, 0.17), transparent 34%),
+                radial-gradient(circle at 50% 62%, rgba(255, 59, 36, 0.14), transparent 30%),
+                linear-gradient(180deg, #0f1d1d 0%, var(--bg) 55%, #050b0c 100%);
+            color: var(--text);
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background:
+                linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+                linear-gradient(180deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+            background-size: 72px 72px;
+            mask-image: radial-gradient(circle at center, black, transparent 72%);
+        }
+
+        .maintenance-shell {
+            width: min(1080px, 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .signal-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .signal {
+            min-height: 34px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 7px 11px;
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            background: rgba(8, 23, 24, 0.72);
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .signal::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--cyan);
+            box-shadow: 0 0 16px rgba(97, 230, 223, 0.95);
+        }
+
+        .signal.alert {
+            color: #ffd0c8;
+            border-color: rgba(255, 59, 36, 0.45);
+        }
+
+        .signal.alert::before {
+            background: var(--red);
+            box-shadow: 0 0 16px rgba(255, 59, 36, 0.95);
+        }
+
+        .error-visual {
+            width: min(860px, 100%);
+            margin: 0 auto 20px;
+            position: relative;
+        }
+
+        .error-visual::before {
+            content: "";
+            position: absolute;
+            inset: 11% 8% 2%;
+            border-radius: 50%;
+            background:
+                radial-gradient(circle, rgba(97, 230, 223, 0.35), transparent 63%),
+                radial-gradient(circle, rgba(255, 59, 36, 0.28), transparent 52%);
+            filter: blur(34px);
+            opacity: 0.82;
+        }
+
+        .error-visual img {
+            width: 100%;
+            display: block;
+            position: relative;
+            filter: drop-shadow(var(--shadow));
+        }
+
+        h1 {
+            max-width: 920px;
+            margin: -10px auto 12px;
+            font-size: clamp(34px, 6vw, 64px);
+            line-height: 1.02;
+            letter-spacing: 0;
+            text-shadow: 0 0 32px rgba(97, 230, 223, 0.18);
+        }
+
+        p {
+            max-width: 720px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: clamp(18px, 2.4vw, 22px);
+            line-height: 1.55;
+        }
+
+        .eta {
+            display: inline-flex;
+            margin-top: 22px;
+            min-height: 42px;
+            align-items: center;
+            justify-content: center;
+            padding: 9px 14px;
+            border: 1px solid rgba(255, 184, 74, 0.45);
+            border-radius: 8px;
+            background: rgba(255, 184, 74, 0.08);
+            color: var(--amber);
+            font-weight: 700;
+        }
+
+        .countdown {
+            gap: 10px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .countdown-value {
+            color: var(--text);
+            letter-spacing: 0;
+        }
+
+        @media (max-width: 680px) {
+            body { padding: 18px; }
+            .signal-row { margin-bottom: 8px; }
+            .signal { font-size: 13px; }
+            h1 { margin-top: -4px; }
+            .error-visual { margin-bottom: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <main class="maintenance-shell">
+        <div class="signal-row" aria-label="Статус обслуживания">
+            <span class="signal alert">режим обслуживания</span>
+            <span class="signal">проверка сервера</span>
+            <span class="signal">данные сохранены</span>
+        </div>
+        <div class="error-visual">
+            <img src="{% static 'annotation/img/error.png' %}" alt="">
+        </div>
+        <h1>{{ maintenance.title }}</h1>
+        <p>{{ maintenance.message }}</p>
+        {% if maintenance.ends_at %}
+            <div class="eta countdown" data-countdown data-ends-at="{{ maintenance.ends_at }}" data-expired-label="в любую минуту">
+                <span>Осталось:</span>
+                <span class="countdown-value" data-countdown-value>{{ maintenance.eta }}</span>
+            </div>
+        {% endif %}
+        {% if not maintenance.ends_at and maintenance.eta %}
+            <div class="eta">Ориентир: {{ maintenance.eta }}</div>
+        {% endif %}
+    </main>
+    {% if maintenance.ends_at %}
+        <script>
+            (() => {
+                const node = document.querySelector("[data-countdown]");
+                if (!node) return;
+
+                const value = node.querySelector("[data-countdown-value]");
+                const target = new Date(node.dataset.endsAt).getTime();
+                const expiredLabel = node.dataset.expiredLabel || "скоро";
+
+                const plural = (number, one, few, many) => {
+                    const mod10 = number % 10;
+                    const mod100 = number % 100;
+                    if (mod10 === 1 && mod100 !== 11) return one;
+                    if (mod10 >= 2 && mod10 <= 4 && (mod100 < 12 || mod100 > 14)) return few;
+                    return many;
+                };
+
+                const format = (milliseconds) => {
+                    const total = Math.max(0, Math.floor(milliseconds / 1000));
+                    if (total <= 0) return expiredLabel;
+
+                    const hours = Math.floor(total / 3600);
+                    const minutes = Math.floor((total % 3600) / 60);
+                    const seconds = total % 60;
+
+                    if (hours > 0) {
+                        return `${hours} ${plural(hours, "час", "часа", "часов")} ${String(minutes).padStart(2, "0")} мин`;
+                    }
+
+                    return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;
+                };
+
+                const tick = () => {
+                    const remaining = target - Date.now();
+                    value.textContent = format(remaining);
+                    if (remaining > 0) {
+                        window.setTimeout(tick, 1000);
+                    }
+                };
+
+                tick();
+            })();
+        </script>
+    {% endif %}
+</body>
+</html>
